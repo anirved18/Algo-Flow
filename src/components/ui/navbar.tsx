@@ -15,18 +15,19 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
+  // Static links array to prevent hydration errors
   const navLinks: NavLink[] = [
     { name: "Home", path: "/" },
     {
       name: "Algorithms",
       dropdown: [
-        { name: "Bubble Sort", path: "/algorithms/bubble" },
-        { name: "Insertion Sort", path: "/algorithms/insertion" },
-        { name: "Selection Sort", path: "/algorithms/selection" },
-        { name: "Quick Sort", path: "/algorithms/quick" },
+        { name: "Bubble Sort", path: "/algorithms/bubblesort" },
+        { name: "Insertion Sort", path: "/algorithms/insertionsort" },
+        { name: "Selection Sort", path: "/algorithms/selectionsort" },
+        { name: "Quick Sort", path: "/algorithms/quicksort" },
       ],
     },
-     { name: "Sorting", path: "/sorting" },
+    { name: "Sorting", path: "/sorting" },
     { name: "About", path: "/aboutme" },
     { name: "Contact", path: "/contactus" },
   ];
@@ -69,7 +70,7 @@ const Navbar: React.FC = () => {
                     />
                   </button>
 
-                  {/* Animated dropdown */}
+                  {/* Dropdown */}
                   <div
                     className={`absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 origin-top ${
                       openDropdown === link.name

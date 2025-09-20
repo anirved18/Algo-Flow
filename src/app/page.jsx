@@ -27,7 +27,9 @@ export default function HomePage() {
 
       {/* Hero Content */}
       <div className="text-center relative z-10 max-w-3xl">
-        <h1 className="text-6xl sm:text-7xl font-bold mb-6">Algorithm Visualizer</h1>
+        <h1 className="text-6xl sm:text-7xl font-bold mb-6">
+          Algorithm Visualizer
+        </h1>
 
         {/* Animated Description */}
         <p className="text-lg sm:text-xl mb-12 text-gray-700 min-h-[80px]">
@@ -50,15 +52,16 @@ export default function HomePage() {
         {/* Glowing border animation */}
         <style jsx>{`
           @keyframes glowBorder {
-            0%, 100% {
+            0%,
+            100% {
               border-color: rgba(255, 255, 255, 0.3);
               box-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
-                          0 0 20px rgba(59, 130, 246, 0.3);
+                0 0 20px rgba(59, 130, 246, 0.3);
             }
             50% {
               border-color: rgba(255, 255, 255, 1);
               box-shadow: 0 0 25px rgba(59, 130, 246, 1),
-                          0 0 50px rgba(59, 130, 246, 0.7);
+                0 0 50px rgba(59, 130, 246, 0.7);
             }
           }
 

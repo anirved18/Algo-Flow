@@ -1,19 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import SimpleDotPattern from "@/components/magicui/DotPattern"
+import SimpleDotPattern from "@/components/magicui/DotPattern";
 
 export default function AboutPage() {
   return (
-     
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start p-8 sm:p-16">
-       <SimpleDotPattern/>
+      <SimpleDotPattern />
       {/* Spacer to push content below fixed navbar */}
       <div className="h-28"></div>
 
       {/* Page Title */}
       <h1 className="text-5xl font-bold text-black mb-12">About Me</h1>
-      
+
       {/* About Me Section */}
       <p className="text-lg text-gray-700 max-w-3xl mb-12">
         Hi, I’m <span className="font-semibold">Anirved Panda</span>, a passionate Computer Science student and aspiring full-stack developer. 
@@ -47,7 +46,6 @@ export default function AboutPage() {
           LinkedIn
         </Link>
       </div>
-
     </div>
   );
 }

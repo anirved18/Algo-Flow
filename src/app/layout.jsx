@@ -1,4 +1,4 @@
-import Navbar from "@/components/ui/navbar"; 
+import Navbar from "@/components/ui/navbar";
 import "./globals.css";
 
 export const metadata = {
@@ -6,7 +6,7 @@ export const metadata = {
   description: "Algorithm visualizer and flowcharts",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased bg-white text-black">
