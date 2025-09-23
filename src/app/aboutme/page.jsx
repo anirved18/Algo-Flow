@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import Background from "@/components/magicui/background"; // Capitalized
 
 export default function AboutPage() {
   return (
     <div className="relative min-h-screen bg-gray-900 flex flex-col items-center justify-start p-8 sm:p-16 text-gray-100">
       {/* Custom Background Component */}
-      <Background />
 
       {/* Spacer to push content below fixed navbar */}
       <div className="h-28"></div>
