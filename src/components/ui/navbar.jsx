@@ -1,22 +1,12 @@
 "use client";
-
 import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-interface NavLink {
-  name: string;
-  path?: string;
-  dropdown?: { name: string; path: string }[];
-}
-
-const Navbar: React.FC = () => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-  // Static links array to prevent hydration errors
-  const navLinks: NavLink[] = [
+  const navLinks = [
     { name: "Home", path: "/" },
     {
       name: "Algorithms",
@@ -27,12 +17,11 @@ const Navbar: React.FC = () => {
         { name: "Quick Sort", path: "/algorithms/quicksort" },
       ],
     },
-    { name: "Sorting", path: "/sorting" },
     { name: "About", path: "/aboutme" },
     { name: "Contact", path: "/contactus" },
   ];
 
-  const toggleDropdown = (name: string) => {
+  const toggleDropdown = (name) => {
     setOpenDropdown(openDropdown === name ? null : name);
   };
 
@@ -41,17 +30,14 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
         <div className="flex justify-between items-center bg-white/95 backdrop-blur-md shadow-2xl rounded-full px-10 py-6">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <Image
+          <a href="/" className="flex items-center">
+            <img
               src="/asserts/logo.jpg"
               alt="AlgoFlow Logo"
-              width={48}
-              height={48}
-              className="mr-3"
-              priority
+              className="mr-3 w-12 h-12 object-cover rounded-full"
             />
             <span className="text-black font-extrabold text-3xl">AlgoFlow</span>
-          </Link>
+          </a>
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-10 items-center relative">
@@ -79,24 +65,24 @@ const Navbar: React.FC = () => {
                     }`}
                   >
                     {link.dropdown.map((item) => (
-                      <Link
+                      <a
                         key={item.name}
                         href={item.path}
                         className="block px-6 py-3 text-black font-medium hover:bg-gradient-to-r hover:from-blue-400 hover:to-indigo-500 hover:text-white transition-all rounded-lg"
                       >
                         {item.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
               ) : (
-                <Link
+                <a
                   key={link.name}
-                  href={link.path!}
+                  href={link.path}
                   className="text-black hover:text-blue-600 font-semibold text-lg transition-colors duration-300"
                 >
                   {link.name}
-                </Link>
+                </a>
               )
             )}
           </div>
@@ -129,25 +115,25 @@ const Navbar: React.FC = () => {
                     </button>
                     {openDropdown === link.name &&
                       link.dropdown.map((item) => (
-                        <Link
+                        <a
                           key={item.name}
                           href={item.path}
                           className="block px-6 py-2 text-black hover:bg-gray-200 rounded-lg transition-colors"
                           onClick={() => setIsOpen(false)}
                         >
                           {item.name}
-                        </Link>
+                        </a>
                       ))}
                   </div>
                 ) : (
-                  <Link
+                  <a
                     key={link.name}
-                    href={link.path!}
+                    href={link.path}
                     className="block text-black font-semibold px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 )
               )}
             </div>

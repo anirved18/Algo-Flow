@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/aboutme/page.jsx", "src/app/page.jsx", "src/app/layout.jsx", "src/app/algorithms/bubblesort/page.jsx", "src/app/algorithms/quicksort/page.jsx", "src/app/algorithms/insertionsort/page.jsx", "src/app/algorithms/selectionsort/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/aboutme/page.jsx", "src/app/page.jsx", "src/app/layout.jsx", "src/app/algorithms/bubblesort/page.jsx", "src/app/algorithms/quicksort/page.jsx", "src/app/algorithms/insertionsort/page.jsx", "src/app/algorithms/selectionsort/page.jsx", "src/app/contactus/page.jsx", "src/components/ui/navbar.jsx", "src/components/magicui/animatedbars.jsx"],
   "exclude": ["node_modules"]
 }

@@ -8,7 +8,7 @@ export default function BubbleSort() {
   const [array, setArray] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [currentCompare, setCurrentCompare] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(null); // purple bar
+  const [currentIndex, setCurrentIndex] = useState(null); // current element
   const [sortedIndices, setSortedIndices] = useState([]);
 
   const maxContainerHeight = 400;
@@ -46,8 +46,8 @@ export default function BubbleSort() {
 
     for (let i = 0; i < n - 1; i++) {
       for (let j = 0; j < n - i - 1; j++) {
-        setCurrentIndex(j); // highlight current element in purple
-        setCurrentCompare([j, j + 1]); // highlight comparison in red
+        setCurrentIndex(j); // highlight current element
+        setCurrentCompare([j, j + 1]); // highlight comparison
         await sleep(210 - speed * 10);
 
         if (arr[j] > arr[j + 1]) {
@@ -70,11 +70,11 @@ export default function BubbleSort() {
   const maxValue = Math.max(...array);
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-white px-4 pt-36">
-      <h1 className="text-4xl font-extrabold mb-2 text-black">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-900 px-4 pt-36 text-gray-100">
+      <h1 className="text-4xl font-extrabold mb-2 text-white">
         Bubble Sort Visualizer
       </h1>
-      <p className="mb-8 text-lg text-gray-600">
+      <p className="mb-8 text-lg text-gray-300">
         Watch the sorting process step by step with animated bars.
       </p>
 
@@ -82,7 +82,7 @@ export default function BubbleSort() {
       <div className="mb-6 w-full max-w-4xl space-y-6">
         <div className="flex flex-col sm:flex-row items-center justify-between sm:space-x-6 space-y-4 sm:space-y-0">
           <div className="flex-1 w-full">
-            <label className="block text-center font-bold text-black text-lg mb-2">
+            <label className="block text-center font-bold text-white text-lg mb-2">
               Number of Bars: {numBars}
             </label>
             <input
@@ -92,14 +92,14 @@ export default function BubbleSort() {
               value={numBars}
               onChange={(e) => setNumBars(Number(e.target.value))}
               disabled={isSorting}
-              className={`w-full h-3 rounded-lg appearance-none cursor-pointer accent-blue-500 ${
-                isSorting ? "opacity-50 cursor-not-allowed" : "bg-gray-200"
+              className={`w-full h-3 rounded-lg appearance-none cursor-pointer accent-indigo-500 ${
+                isSorting ? "opacity-50 cursor-not-allowed" : "bg-gray-700"
               }`}
             />
           </div>
 
           <div className="flex-1 w-full">
-            <label className="block text-center font-bold text-black text-lg mb-2">
+            <label className="block text-center font-bold text-white text-lg mb-2">
               Speed: {speed}
             </label>
             <input
@@ -109,8 +109,8 @@ export default function BubbleSort() {
               value={speed}
               onChange={(e) => setSpeed(Number(e.target.value))}
               disabled={isSorting}
-              className={`w-full h-3 rounded-lg appearance-none cursor-pointer accent-purple-500 ${
-                isSorting ? "opacity-50 cursor-not-allowed" : "bg-gray-200"
+              className={`w-full h-3 rounded-lg appearance-none cursor-pointer accent-indigo-500 ${
+                isSorting ? "opacity-50 cursor-not-allowed" : "bg-gray-700"
               }`}
             />
           </div>
@@ -120,7 +120,7 @@ export default function BubbleSort() {
           <button
             onClick={handleVisualize}
             disabled={isSorting}
-            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl animate-pulse disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-indigo-600 text-white font-bold px-8 py-3 rounded-xl shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSorting ? "Sorting..." : "Visualize"}
           </button>
@@ -128,7 +128,7 @@ export default function BubbleSort() {
           <button
             onClick={handleRandomize}
             disabled={isSorting}
-            className="bg-gradient-to-r from-green-400 to-blue-500 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gray-800 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Randomize
           </button>
@@ -136,16 +136,16 @@ export default function BubbleSort() {
       </div>
 
       {/* Bars */}
-      <div className="flex items-end justify-center space-x-1 h-[450px] w-full max-w-6xl border p-2 rounded-lg bg-gray-50">
+      <div className="flex items-end justify-center space-x-1 h-[450px] w-full max-w-6xl border p-2 rounded-lg bg-gray-800">
         {array.map((num, idx) => {
-          let bgColor = "bg-gradient-to-t from-blue-700 to-blue-500 shadow-lg";
+          let bgColor = "bg-gray-500 shadow-lg";
 
           if (sortedIndices.includes(idx))
-            bgColor = "bg-gradient-to-t from-green-700 to-green-500 shadow-lg";
+            bgColor = "bg-green-500 shadow-lg"; // sorted
           else if (currentCompare.includes(idx))
-            bgColor = "bg-gradient-to-t from-red-700 to-orange-600 shadow-lg";
+            bgColor = "bg-red-500 shadow-lg"; // comparing
           else if (idx === currentIndex)
-            bgColor = "bg-gradient-to-t from-purple-700 to-purple-500 shadow-lg";
+            bgColor = "bg-indigo-500 shadow-lg"; // current element
 
           return (
             <div

@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import SimpleDotPattern from "@/components/magicui/DotPattern";
+import background from "@/components/magicui/background";
 import AnimatedBars from "@/components/magicui/animatedbars";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const fullText =
-    "Master algorithms effortlessly with interactive step-by-step visualizations, turning complex concepts into clear, engaging learning experiences.";
+    "Master algorithms effortlessly with interactive visualizations, turning complex concepts into engaging learning experiences.";
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
@@ -16,59 +17,63 @@ export default function HomePage() {
       setDisplayedText(fullText.slice(0, index + 1));
       index++;
       if (index === fullText.length) clearInterval(interval);
-    }, 20);
+    }, 15);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-white text-black p-8 sm:p-16">
-      {/* Dotted Background */}
-      <SimpleDotPattern />
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-gray-900 overflow-hidden text-gray-100">
+      {/* Background Dots */}
+      <background />
 
-      {/* Hero Content */}
-      <div className="text-center relative z-10 max-w-3xl">
-        <h1 className="text-6xl sm:text-7xl font-bold mb-6">
+      {/* Hero Section */}
+      <div className="text-center relative z-10 max-w-3xl px-4 sm:px-16">
+        {/* Title */}
+        <motion.h1
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="text-6xl sm:text-7xl font-extrabold mb-6 text-white"
+        >
           Algorithm Visualizer
-        </h1>
+        </motion.h1>
 
         {/* Animated Description */}
-        <p className="text-lg sm:text-xl mb-12 text-gray-700 min-h-[80px]">
-          {displayedText}
-        </p>
-
-        {/* Animated Bars */}
-        <div className="mb-12">
-          <AnimatedBars />
-        </div>
-
-        {/* Stylish Call-to-action Button */}
-        <Link
-          href="/algo"
-          className="inline-block font-semibold py-4 px-10 rounded-2xl text-white text-lg shadow-lg border-2 border-transparent transition-all duration-300 transform hover:scale-105 hover:shadow-xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 animate-glow-border"
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1.5 }}
+          className="text-lg sm:text-xl mb-12 text-gray-300 min-h-[80px]"
         >
-          Check It Out
-        </Link>
+          {displayedText}
+        </motion.p>
 
-        {/* Glowing border animation */}
-        <style jsx>{`
-          @keyframes glowBorder {
-            0%,
-            100% {
-              border-color: rgba(255, 255, 255, 0.3);
-              box-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
-                0 0 20px rgba(59, 130, 246, 0.3);
-            }
-            50% {
-              border-color: rgba(255, 255, 255, 1);
-              box-shadow: 0 0 25px rgba(59, 130, 246, 1),
-                0 0 50px rgba(59, 130, 246, 0.7);
-            }
-          }
+        {/* Mini Sorting Animation */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="mb-12"
+        >
+          <AnimatedBars />
+        </motion.div>
 
-          .animate-glow-border {
-            animation: glowBorder 1s infinite alternate;
-          }
-        `}</style>
+        {/* Call-to-Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <Link
+            href="/algo"
+            className="relative inline-block font-semibold py-4 px-10 rounded-2xl text-white text-lg shadow-lg border-2 border-transparent transition-all duration-300 transform hover:scale-105 hover:shadow-xl bg-gray-800"
+          >
+            Explore Visualizer
+          </Link>
+
+          <Link
+            href="#features"
+            className="inline-block font-semibold py-4 px-10 rounded-2xl text-gray-100 border-2 border-gray-600 bg-gray-900 shadow hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
+          >
+            Learn More
+          </Link>
+        </div>
       </div>
     </div>
   );
